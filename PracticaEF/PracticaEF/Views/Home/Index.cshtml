@@ -6,3 +6,23 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3  rounded-3 text-center" style="height: 25%; width: 30%; background-color: #007bff;">
+            <h3 class="text-white">Clientes</h3>
+            <h5 class="text-white">@ViewBag.Cliente</h5>
+        </div>
+        <div class="col-sm-3 mx-1  rounded-3 text-center" style="height: 25%; width: 30%; background-color: #28a745;">
+            <h3 class="text-white">Productos</h3>
+            <h5 class="text-white">@ViewBag.Productos</h5>
+        </div>
+        <div class="col-sm-3  rounded-3 text-center" style="height: 25%; width: 30%; background-color: #dc3545;">
+            <h3 class="text-white">Ventas</h3>
+            <h5 class="text-white">@ViewBag.Ventas</h5>
+        </div>
+        <div class="col-sm-3 mt-2 rounded-3 bg-warning text-center" style="height: 25%; width: 30%;">
+            <h3 class="text-white">Recaudación</h3>
+            <h5 class="text-white">$@ViewBag.Recaudacion.ToString("0.00")</h5>
+        </div>
+    </div>
+</div>

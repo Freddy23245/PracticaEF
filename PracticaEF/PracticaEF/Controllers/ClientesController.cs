@@ -22,6 +22,7 @@ namespace PracticaEF.Controllers
         public IActionResult Create() {
             return View();
         }
+
         [HttpPost]
         public IActionResult Create(ClientesViewModel cliente)
         {
