@@ -97,6 +97,8 @@ public partial class PracticaEntityFrameworkContext : DbContext
                         cantidad = reader.GetInt32(0);
                     }
                 }
+                //object cant = cmd.ExecuteScalar();
+                //cantidad = Convert.ToInt32(cant);
 
             }
         }
