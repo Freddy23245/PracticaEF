@@ -11,6 +11,7 @@
                         <th>Cliente</th>
                         <th>Producto</th>
                         <th>Precio</th>
+                        <th>Cantidad</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
@@ -23,6 +24,7 @@
                             <td>@item.IdClienteNavigation.Nombre @item.IdClienteNavigation.Apellido</td>
                             <td>@item.IdProductoNavigation.Nombre</td>
                             <td>@item.IdProductoNavigation.Precio</td>
+                            <td>@item.Cantidad</td>
                             <td><a asp-action="Eliminar" onclick="return confirm('¿Desea eliminar el Registro?')" asp-controller="Ventas" asp-route-id="@item.IdVenta" class="btn btn-danger">Eliminar</a></td>
                         </tr>
                     }

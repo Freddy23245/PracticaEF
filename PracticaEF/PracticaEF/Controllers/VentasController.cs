@@ -32,9 +32,13 @@ namespace PracticaEF.Controllers
             if (eliminado == null)
                 return StatusCode(404);
             else
+            {
                 _context.Remove(eliminado);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+                _context.AumentarStock(eliminado.IdProducto, eliminado.Cantidad);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+                
         }
         [HttpPost]
         public IActionResult Create(VentasViewModel venta)
@@ -42,6 +46,7 @@ namespace PracticaEF.Controllers
             if (ModelState.IsValid)
             {
                 _context.AgregarVenta(venta);
+                _context.DisminuirStock(venta.IdProducto,venta.cantidad);
                 return RedirectToAction(nameof(Index));
 
             }

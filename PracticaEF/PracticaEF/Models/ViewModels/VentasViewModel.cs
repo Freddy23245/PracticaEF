@@ -9,8 +9,10 @@ namespace PracticaEF.Models.ViewModels
         public int IdCliente { get; set; }
         [Required]
         public int IdProducto { get; set; }
+        [Required]
+        public int cantidad { get; set; }
 
-        public DateTime? Fecha { get; set; }
+        public DateTime Fecha { get; set; }
 
 
     }

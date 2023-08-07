@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
 using Microsoft.Data.SqlClient;
+using System.Data;
 using Microsoft.EntityFrameworkCore;
 using PracticaEF.Models.ViewModels;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace PracticaEF.Models;
 
@@ -29,8 +28,21 @@ public partial class PracticaEntityFrameworkContext : DbContext
     {
         var idCliente = new SqlParameter("@idCliente", vent.IdCliente);
         var idProducto = new SqlParameter("@idProducto", vent.IdProducto);
-        Database.ExecuteSqlRaw("EXEC AgregarVenta @idCliente, @idProducto", idCliente, idProducto);
+        var cantidad = new SqlParameter("@cantidad", vent.cantidad);
+        Database.ExecuteSqlRaw("EXEC AgregarVenta @idCliente, @idProducto,@cantidad", idCliente, idProducto,cantidad);
 
+    }
+    public void DisminuirStock(int idProd,int? cantidades)
+    {
+        var idProducto = new SqlParameter("@idProducto", idProd);
+        var cantidad = new SqlParameter("@cantidad",cantidades);
+        Database.ExecuteSqlRaw("EXEC SpDisminuirStock @idProducto, @cantidad", idProducto, cantidad);
+    }
+    public void AumentarStock(int idProd, int? cantidades)
+    {
+        var idProducto = new SqlParameter("@idProducto", idProd);
+        var cantidad = new SqlParameter("@cantidad", cantidades);
+        Database.ExecuteSqlRaw("EXEC SpAumentarStock @idProducto, @cantidad", idProducto, cantidad);
     }
     public void AgregarCliente(ClientesViewModel cli)
     {
@@ -90,7 +102,6 @@ public partial class PracticaEntityFrameworkContext : DbContext
         }
         return cantidad;
     }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cliente>(entity =>
@@ -135,6 +146,7 @@ public partial class PracticaEntityFrameworkContext : DbContext
             entity.HasKey(e => e.IdVenta);
 
             entity.Property(e => e.IdVenta).HasColumnName("idVenta");
+            entity.Property(e => e.Cantidad).HasColumnName("cantidad");
             entity.Property(e => e.Fecha)
                 .HasDefaultValueSql("(getdate())")
                 .HasColumnType("date");

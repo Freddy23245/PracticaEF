@@ -11,6 +11,8 @@ public partial class Venta
 
     public int IdProducto { get; set; }
 
+    public int? Cantidad { get; set; }
+
     public DateTime Fecha { get; set; }
 
     public virtual Cliente IdClienteNavigation { get; set; } = null!;
