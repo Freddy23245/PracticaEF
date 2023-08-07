@@ -1,0 +1,13 @@
+﻿@model List<Cliente>
+<form method="post" asp-action="Busqueda" asp-controller="Clientes" class="form-inline text-center">
+    <div class="form-group mb-2">
+        <input type="text" class="form-control" name="dni" placeholder="Buscar" />
+    </div>
+    <button type="submit" class="btn btn-primary mb-4">Buscar</button>
+</form>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>@item.Nombre - @item.Apellido - @item.Dni - @item.Correo - @item.Telefono</li>
+    }
+</ul>

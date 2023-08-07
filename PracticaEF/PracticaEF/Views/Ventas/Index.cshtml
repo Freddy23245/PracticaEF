@@ -1,0 +1,33 @@
+﻿<div class="container">
+    <a class="btn btn-success mb-3" href="@Url.Action("Create","Ventas")">Nueva Venta</a>
+    <h3>Cantidad de Ventas: @ViewBag.Cantidad</h3>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id Venta</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Producto</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Venta item in ViewBag.Ventas)
+                    {
+                        <tr>
+                            <td>@item.IdVenta</td>
+                            <td>@item.Fecha.ToString("dd/MM/yyyy")</td>
+                            <td>@item.IdClienteNavigation.Nombre @item.IdClienteNavigation.Apellido</td>
+                            <td>@item.IdProductoNavigation.Nombre</td>
+                            <td>@item.IdProductoNavigation.Precio</td>
+                            <td><a asp-action="Eliminar" onclick="return confirm('¿Desea eliminar el Registro?')" asp-controller="Ventas" asp-route-id="@item.IdVenta" class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+﻿@model Cliente
+<div class="container mt-4 ">
+    <h2>Formulario para guardar datos</h2>
+    <form asp-action="Create" method="post"  asp-controller="Clientes">
+      <div class="row">
+            <div class="col-md-6">
+                <label for="nombre">Nombre</label>
+                <input type="text" class="form-control " asp-for="Nombre" placeholder="Ingrese su nombre">
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="apellido">Apellido</label>
+                <input type="text" class="form-control" asp-for="Apellido" placeholder="Ingrese su apellido">
+                <span asp-validation-for="Apellido" class="text-danger"></span>
+            </div>
+      </div>
+     <div class="row">
+            <div class="col-md-4">
+                <label for="dni">DNI</label>
+                <input type="text" class="form-control" asp-for="Dni" placeholder="Ingrese su DNI">
+                <span asp-validation-for="Dni" class="text-danger"></span>
+            </div>
+            <div class="col-md-8">
+                <label for="correo">Correo</label>
+                <input type="email" class="form-control" asp-for="Correo" placeholder="Ingrese su correo electrónico">
+                <span asp-validation-for="Correo" class="text-danger"></span>
+            </div>
+     </div>
+        <div class="col-md-12 mb-4">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" class="form-control" asp-for="Telefono" placeholder="Ingrese su número de teléfono">
+            <span asp-validation-for="Telefono" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar</button>
+    </form>
+</div>

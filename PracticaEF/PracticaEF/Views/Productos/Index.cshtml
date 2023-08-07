@@ -1,0 +1,30 @@
+﻿<div class="container">
+    <a class="btn btn-success mb-3" href="@Url.Action("Create","Productos")">Agregar Producto</a>
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Stock</th>
+                        <th>Precio</th>
+                        <th colspan="2">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Producto item in ViewBag.Productos)
+                    {
+                        <tr>
+                            <td>@item.Nombre</td>
+                            <td>@item.Stock</td>
+                            <td>@item.Precio</td>
+
+                            <td><a asp-action="Modificar" asp-controller="Productos" asp-route-id="@item.IdProducto" class="btn btn-primary">Editar</a></td>
+                            <td><a asp-action="Eliminar" onclick="return confirm('¿Desea eliminar el Registro?')" asp-controller="Productos" asp-route-id="@item.IdProducto" class="btn btn-danger">Eliminar</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
