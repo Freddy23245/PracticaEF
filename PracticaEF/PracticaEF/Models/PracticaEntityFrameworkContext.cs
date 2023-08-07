@@ -90,15 +90,15 @@ public partial class PracticaEntityFrameworkContext : DbContext
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "SpCantidadVentas";
 
-                using (var reader = cmd.ExecuteReader())
-                {
-                    if (reader.Read())
-                    {
-                        cantidad = reader.GetInt32(0);
-                    }
-                }
-                //object cant = cmd.ExecuteScalar();
-                //cantidad = Convert.ToInt32(cant);
+                //using (var reader = cmd.ExecuteReader())
+                //{
+                //    if (reader.Read())
+                //    {
+                //        cantidad = reader.GetInt32(0);
+                //    }
+                //}
+                object cant = cmd.ExecuteScalar();
+                cantidad = Convert.ToInt32(cant);
 
             }
         }
