@@ -24,18 +24,19 @@ public partial class PracticaEntityFrameworkContext : DbContext
 
     public virtual DbSet<Venta> Ventas { get; set; }
 
+    #region Procedimientos Almacenados
     public void AgregarVenta(VentasViewModel vent)
     {
         var idCliente = new SqlParameter("@idCliente", vent.IdCliente);
         var idProducto = new SqlParameter("@idProducto", vent.IdProducto);
         var cantidad = new SqlParameter("@cantidad", vent.cantidad);
-        Database.ExecuteSqlRaw("EXEC AgregarVenta @idCliente, @idProducto,@cantidad", idCliente, idProducto,cantidad);
+        Database.ExecuteSqlRaw("EXEC AgregarVenta @idCliente, @idProducto,@cantidad", idCliente, idProducto, cantidad);
 
     }
-    public void DisminuirStock(int idProd,int? cantidades)
+    public void DisminuirStock(int idProd, int? cantidades)
     {
         var idProducto = new SqlParameter("@idProducto", idProd);
-        var cantidad = new SqlParameter("@cantidad",cantidades);
+        var cantidad = new SqlParameter("@cantidad", cantidades);
         Database.ExecuteSqlRaw("EXEC SpDisminuirStock @idProducto, @cantidad", idProducto, cantidad);
     }
     public void AumentarStock(int idProd, int? cantidades)
@@ -89,21 +90,15 @@ public partial class PracticaEntityFrameworkContext : DbContext
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "SpCantidadVentas";
-
-                //using (var reader = cmd.ExecuteReader())
-                //{
-                //    if (reader.Read())
-                //    {
-                //        cantidad = reader.GetInt32(0);
-                //    }
-                //}
-                object? cant = cmd.ExecuteScalar();
-                cantidad = Convert.ToInt32(cant);
+               
+                object? cant = cmd.ExecuteScalar();//Se obtiene el unico valor
+                cantidad = Convert.ToInt32(cant);//se covierte en entero
 
             }
         }
         return cantidad;
-    }
+    } 
+    #endregion
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Cliente>(entity =>

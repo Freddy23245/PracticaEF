@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using PracticaEF.Models;
 using PracticaEF.Models.ViewModels;
+using System.Net;
 
 namespace PracticaEF.Controllers
 {
@@ -13,13 +14,10 @@ namespace PracticaEF.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index(string dni)
         {
-           var cli = await _context.Clientes.ToListAsync();
-            Cliente cliente = new Cliente();
-
-            ViewBag.Clientes = cli;
-            return View(cliente);
+            List<Cliente> clientes = _context.Busqueda(dni);
+            return View(clientes);
         }
         public IActionResult Create() {
             return View();
@@ -72,10 +70,6 @@ namespace PracticaEF.Controllers
             return RedirectToAction(nameof(Index));
 
         }
-        public IActionResult Busqueda(string dni)
-        {
-            List<Cliente> clientes = _context.Busqueda(dni);
-            return View(clientes);
-        }
+  
     }
 }
