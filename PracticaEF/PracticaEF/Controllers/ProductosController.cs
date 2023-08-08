@@ -16,9 +16,15 @@ namespace PracticaEF.Controllers
 
         public async Task<IActionResult> Index()
         {
+            ViewBag.Productos = await _context.Productos.ToListAsync();
             var prod = await _context.Productos.ToListAsync();
             ViewBag.Productos = prod;
             return View(prod);
+        }
+        public IActionResult PorcentajeAumento(int idProducto, decimal porcentaje)
+        {
+            _context.PorcentajeAumento(idProducto, porcentaje);
+            return RedirectToAction(nameof(Index));
         }
         public IActionResult Create()
         {

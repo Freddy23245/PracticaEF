@@ -97,7 +97,13 @@ public partial class PracticaEntityFrameworkContext : DbContext
             }
         }
         return cantidad;
-    } 
+    }
+    public void PorcentajeAumento(int id,decimal porcentaje)
+    {
+        var idProducto = new SqlParameter("@idProducto", id);
+        var porcentajeAumento = new SqlParameter("@porcentaje", porcentaje);
+        Database.ExecuteSqlRaw("EXEC SpAumentarPrecio @idProducto,@porcentaje", idProducto,porcentajeAumento);
+    }
     #endregion
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
