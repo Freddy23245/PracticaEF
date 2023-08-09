@@ -19,9 +19,7 @@ public partial class PracticaEntityFrameworkContext : DbContext
     }
 
     public virtual DbSet<Cliente> Clientes { get; set; }
-
     public virtual DbSet<Producto> Productos { get; set; }
-
     public virtual DbSet<Venta> Ventas { get; set; }
 
     #region Procedimientos Almacenados
